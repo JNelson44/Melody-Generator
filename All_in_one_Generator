@@ -1,3 +1,5 @@
+# Melody creator test
+
 chordNumberSet = set()                          #Makes an empty set
 
 print('Please use "s" for sharps and "b" for flats')
@@ -174,26 +176,25 @@ MegaScaleList = [MajorPentatonic, MajorScales, NaturalMinor, HarmonicMinor, Melo
 
 result = []                                                  #Makes a new list of results
 
-for typeOfScale in MegaScaleList:                            #Loops to check every scale in all scale lists
-    print("Change Type")
-    for scale in typeOfScale:
+for typeOfScale in MegaScaleList:                            #Loops to check every scale type in MegaScaleList
+
+    for scale in typeOfScale:                                #Loops to check every subscale in each scale type
         
         count = 0
-        for note in scale:
+        for note in scale:                                   #Loops to check every note in each subscale
             
-            if note in chordNumberSet:
+            if note in chordNumberSet:                       #Counts every time it finds a matching note
                 count += 1
-        if count == len(chordNumberSet):
+        if count == len(chordNumberSet):                     #If the number of matching notes found is equal to the number of notes given,...
             print("")
-            print("Adding:")
-            print(scale)
-            print(count)
-            result.append(scale)
-                                                             #If all the notes in chordNumberList are found in a scale,
+            print("Adding:")                                 #...tell the user that the scale is being added and...
+            print(scale[0])
+            print(count)                                     #...how many notes matched
+            result.append(scale)                             #Add that scale to the result list
+                                                             
 #-------------------------------------------------------#
-                                                             #Put that scale into the result list
+                                                             
 
-                                                             #Print the results list
 
 import random                                                
 
@@ -201,31 +202,32 @@ howManyNotes = [4, 5, 6, 7, 8, 9, 10, 11, 12]                #Randomly select ho
 
 selectedScale = random.choice(result)                        #Choose a major scale to use from all scales that fit the given chord otherwise
 
-if selectedScale in MajorPentatonic:                          #If the scale is a pentatonic scale, use the pentatonic scale settings
+if selectedScale in MajorPentatonic:                         #If the scale is a pentatonic scale, use the pentatonic scale settings
 
     print('PENTATONIC SCALE SETTINGS')
 
-    print(selectedScale[0])                                      #Tell the user what scale is being used
+    print(selectedScale[0])                                  #Tell the user what scale is being used
 
-    del selectedScale[0]                                         #Delete the scale name from the scale list so that it isn't chose as a note
+    del selectedScale[0]                                     #Delete the scale name from the scale list so that it isn't chosen as a note
 
-    generatedMelody = random.choices(selectedScale, k=random.choice(howManyNotes))              #Generates a melody by selecting a random number of notes (k) from the selected scale, where no note is disproportionally favored
+    generatedMelody = random.choices(selectedScale, k=random.choice(howManyNotes))              #Generates a melody by selecting a random number of notes (k) from the selected scale, where no note
+                                                                                                #is disproportionally favored
 
     
-    print(generatedMelody)                                       #Show the melody
+    print(generatedMelody)                                   #Show the melody
 
 else:                                                        #If the scale is not a pentatonic scale, use normal (7 note) scale settings
 
     print('NORMAL SCALE SETTINGS')
 
-    print(selectedScale[0])                                      #Tell the user what scale is being used
+    print(selectedScale[0])                                  #Tell the user what scale is being used
 
-    del selectedScale[0]                                         #Delete the scale name from the scale list so that it isn't chose as a note
+    del selectedScale[0]                                     #Delete the scale name from the scale list so that it isn't chose as a note
 
     generatedMelody = random.choices(selectedScale, weights=[3, 2, 2, 2, 2, 2, 1], k=random.choice(howManyNotes)) #Generate a melody by selecting a random number of notes (k) from the selected
                                                                                                                   #scale, where the first note of the scale is disproportionally favored and the
                                                                                                                   #seventh is disproportionately unfavored
 
-    print(generatedMelody)                                       #Show the melody
+    print(generatedMelody)                                   #Show the melody
 
    
