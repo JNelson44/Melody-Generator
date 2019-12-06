@@ -1,0 +1,231 @@
+chordNumberSet = set()                          #Makes an empty set
+
+print('Please use "s" for sharps and "b" for flats')
+print('Note that the program DOES differentiate between notes like A# and Bb, or B# and C')
+print('How many notes in your chord?')          #Finds out number of notes it needs to analyze
+chordLength = int(input())                      #Turns user input into an integer
+
+i = 0
+while i < chordLength:                          #Makes a loop which asks for the notes in the chord starting at 1 up to the last number of notes in the chord
+    x = i+1                                     #Creates a variable to continually ask for the correct note
+    print('What is note ' + str(x))
+    note = input()
+    if(
+        note not in ['Ab', 'A', 'As', 'Bb', 'B', 'Bs', 'Cb', 'C', 'Cs', 'Db', 'D', 'Ds', 'Eb', 'E', 'Es', 'Fb', 'F', 'Fs', 'Gb', 'G', 'Gs']
+        ):
+        print('Error: The note you entered is not valid')
+        continue                                #If the input for a note is not a note, ask for a new note in that position
+    
+    elif(note in ['As','Cs','Ds','Fs','Gs']):   #If input is a note with a sharp, convert to a flat
+        if note == 'As':
+            note = 'Bb'
+        elif note == 'Cs':
+            note = 'Db'
+        elif note == 'Ds':
+            note = 'Eb'
+        elif note == 'Fs':
+            note = 'Gb'
+        elif note == 'Gs':
+            note = 'Ab'
+            
+        print('Converting Note')
+        chordNumberSet.add(note)                #Puts the note into the set
+        print(chordNumberSet)                   #Shows user the current set
+        i += 1                                  #Add 1 to the loop counter
+        
+    elif(note in ['A','B','C','D','E','F','G']):
+        print('No Conversion Necessary')
+        chordNumberSet.add(note)                #Puts the note into the set
+        print(chordNumberSet)                   #Shows user the current set
+        i += 1                                  #Add 1 to the loop counter
+        
+    else:
+        print('Sharp/flat convert error...')
+        break
+    
+else:
+    print('Please wait...')                     #Asks user to wait when loop ends
+
+    
+# The following are the lists of all major scales
+AbMajor = ['AbMajor', 'Ab', 'Bb', 'C', 'Db', 'Eb', 'F', 'G']
+AMajor = ['AMajor', 'A', 'B', 'Db', 'D', 'E', 'Gb', 'Ab']
+#A Sharp Major scale is theoretical, so it will not be included
+BbMajor = ['BbMajor', 'Bb', 'C', 'D', 'Eb', 'F', 'G', 'A']
+BMajor = ['BMajor', 'B', 'Db', 'Eb', 'E' 'Gb', 'Ab', 'Bb']
+#B Sharp Major scale is theoretical, so it will not be included
+CbMajor = ['CbMajor', 'Cb', 'Db', 'Eb', 'Fb', 'Gb', 'Ab', 'Bb']
+CMajor = ['CMajor', 'C', 'D', 'E', 'F', 'G', 'A', 'B']
+#C Sharp Major scale is theoretical, so it will not be included
+DbMajor = ['DbMajor', 'Db', 'Eb', 'F', 'Gb', 'Ab', 'Bb', 'C']
+DMajor = ['DMajor', 'D', 'E', 'Gb', 'G', 'A', 'B', 'Db']
+#D Sharp Major scale is theoretical, so it will not be included
+EbMajor = ['EbMajor', 'Eb', 'F', 'G', 'Ab', 'Bb', 'C', 'D']
+EMajor = ['EMajor', 'E', 'Gb', 'Ab', 'A', 'B', 'Db', 'Eb']
+#E Sharp Major scale is theoretical, so it will not be included
+#F Flat Major scale is theoretical, so it will not be included
+FMajor = ['FMajor', 'F', 'G', 'A', 'Bb', 'C', 'D', 'E']
+#F Sharp Major scale is theoretical, so it will not be included
+GbMajor = ['GbMajor', 'Gb', 'Ab', 'Bb', 'B', 'Db', 'Eb', 'F']
+GMajor = ['GMajor', 'G', 'A', 'B', 'C', 'D', 'E', 'Gb']
+#G Sharp Major scale is theoretical, so it will not be included
+
+# The following are the lists of all natural minor scales
+AbNaturalMinor = ['AbNaturalMinor', 'Ab', 'Bb', 'Cb', 'Db', 'Eb', 'Fb', 'Gb']
+ANaturalMinor = ['ANaturalMinor', 'A', 'B', 'C', 'D', 'E', 'F', 'G']
+#A Sharp Natural Minor is theoretical, so it will not be included
+BbNaturalMinor = ['BbNaturalMinor', 'Bb', 'C', 'Db', 'Eb', 'F', 'Gb', 'Ab']
+BNaturalMinor = ['BNaturalMinor', 'B', 'Db', 'D', 'E', 'Gb', 'G', 'A']
+#B Sharp Natural Minor is theoretical, so it will not be included
+#C Flat Natural Minor is theoretical, so it will not be included
+CNaturalMinor = ['CNaturalMinor', 'C', 'D', 'Eb', 'F', 'G', 'Ab', 'Bb']
+#C Sharp Natural Minor is theoretical, so it will not be included
+DbNaturalMinor = ['DbNaturalMinor', 'Db', 'Eb', 'E', 'Gb', 'Ab', 'A', 'B']
+DNaturalMinor = ['DNaturalMinor', 'D', 'E', 'F', 'G', 'A', 'Bb', 'C']
+#D Sharp Natural Minor is theoretical, so it will not be included
+EbNaturalMinor = ['EbNaturalMinor', 'Eb', 'F', 'Gb', 'Ab', 'Bb', 'Cb', 'Db']
+ENaturalMinor = ['ENaturalMinor', 'E', 'Gb', 'G', 'A', 'B', 'C', 'D']
+#E Sharp Natural Minor is theoretical, so it will not be included
+#F Flat Natural Minor is theoretical, so it will not be included
+FNaturalMinor = ['FNaturalMinor', 'F', 'G', 'Ab', 'Bb', 'C', 'Db', 'Eb']
+#F Sharp Natural Minor is theoretical, so it will not be included
+GbNaturalMinor = ['GbNaturalMinor', 'Gb', 'Ab', 'A', 'B', 'Db', 'D', 'E']
+GNaturalMinor = ['GNaturalMinor', 'G', 'A', 'Bb', 'C', 'D', 'Eb', 'F']
+#G Sharp Natural Minor is theoretical, so it will not be included
+
+# The following are the lists of all harmonic minor scales
+AbHarmonicMinor = ['AbHarmonicMinor', 'Ab', 'Bb', 'Cb', 'Db', 'Eb', 'Fb', 'G']
+AHarmonicMinor = ['AHarmonicMinor', 'A', 'B', 'C', 'D', 'E', 'F', 'Gs']
+#A Sharp Harmonic Minor is theoretical, so it will not be included
+BbHarmonicMinor = ['BbHarmonicMinor', 'Bb', 'C', 'Db', 'Eb', 'F', 'Gb', 'A']
+BHarmonicMinor = ['BHarmonicMinor', 'B', 'Db', 'D', 'E', 'Gb', 'G', 'Bb']
+#B Sharp Harmonic Minor is theoretical, so it will not be included
+#C Flat Harmonic Minor is theoretical, so it will not be included
+CHarmonicMinor = ['CHarmonicMinor', 'C', 'D', 'Eb', 'F', 'G', 'Ab', 'B']
+#C Sharp Harmonic Minor is theoretical, so it will not be included
+DbHarmonicMinor = ['DbHarmonicMinor', 'Db', 'Eb', 'E', 'Gb', 'Ab', 'A', 'C']
+DHarmonicMinor = ['DHarmonicMinor', 'D', 'E', 'F', 'G', 'A', 'Bb', 'Db']
+#D Sharp Harmonic Minor is theoretical, so it will not be included
+EbHarmonicMinor = ['EbHarmonicMinor', 'Eb', 'F', 'Gb', 'Ab', 'Bb', 'Cb', 'D']
+EHarmonicMinor = ['EHarmonicMinor', 'E', 'Gb', 'G', 'A', 'B', 'C', 'Eb']
+#E Sharp Harmonic Minor is theoretical, so it will not be included
+#F Flat Harmonic Minor is theoretical, so it will not be included
+FHarmonicMinor = ['FHarmonicMinor', 'F', 'G', 'Ab', 'Bb', 'C', 'Db', 'E']
+#F Sharp Harmonic Minor is theoretical, so it will not be included
+GbHarmonicMinor = ['GbHarmonicMinor', 'Gb', 'Ab', 'A', 'B', 'Db', 'D', 'F']
+GHarmonicMinor = ['GHarmonicMinor', 'G', 'A', 'Bb', 'C', 'D', 'Eb', 'Fs']
+#G Sharp Harmonic Minor is theoretical, so it will not be included
+
+# The following are the lists of all melodic minor scales
+AbMelodicMinor = ['AbMelodicMinor', 'Ab', 'Bb', 'Cb', 'Db', 'Eb', 'F', 'G']
+AMelodicMinor = ['AMelodicMinor', 'A', 'B', 'C', 'D', 'E', 'Gb', 'Ab']
+#A Sharp Melodic Minor is theoretical, so it will not be included
+BbMelodicMinor = ['BbMelodicMinor', 'Bb', 'C', 'Db', 'Eb', 'F', 'G', 'A']
+BMelodicMinor = ['BMelodicMinor', 'B', 'Db', 'D', 'E', 'Gb', 'Ab', 'Bb']
+#B Sharp Melodic Minor is theoretical, so it will not be included
+#C Flat Melodic Minor is theoretical, so it will not be included
+CMelodicMinor = ['CMelodicMinor', 'C', 'D', 'Eb', 'F', 'G', 'A', 'B']
+#C Sharp Melodic Minor is theoretical, so it will not be included
+DbMelodicMinor = ['DbMelodicMinor', 'Db', 'Eb', 'E', 'Gb', 'Ab', 'BB', 'C']
+DMelodicMinor = ['DMelodicMinor', 'D', 'E', 'F', 'G', 'A', 'B', 'Cs']
+#D Sharp Melodic Minor is theoretical, so it will not be included
+EbMelodicMinor = ['EbMelodicMinor', 'Eb', 'F', 'Gb', 'Ab', 'Bb', 'C', 'D']
+EMelodicMinor = ['EMelodicMinor', 'E', 'Gb', 'G', 'A', 'B', 'Db', 'Eb']
+#E Sharp Melodic Minor is theoretical, so it will not be included
+#F Flat Melodic Minor is theoretical, so it will not be included
+FMelodicMinor = ['FMelodicMinor', 'F', 'G', 'Ab', 'Bb', 'C', 'D', 'E']
+#F Sharp Melodic Minor is theoretical, so it will not be included
+GbMelodicMinor = ['GbMelodicMinor', 'Gb', 'Ab', 'A', 'B', 'Db', 'Eb', 'F']
+GMelodicMinor = ['GMelodicMinor', 'G', 'A', 'Bb', 'C', 'D', 'E', 'Gb']
+#G Sharp Melodic Minor is theoretical, so it will not be included
+
+# The following are the lists of all pentatonic major scales
+AbMajorPentatonic = ['AbMajorPentatonic', 'Ab', 'Bb', 'C', 'Eb', 'F']
+AMajorPentatonic = ['AMajorPentatonic', 'A', 'B', 'Db', 'E', 'Gb']
+#A Sharp Major Pentatonic is theoretical, so it will not be included
+BbMajorPentatonic = ['BbMajorPentatonic', 'Bb', 'C', 'D', 'F', 'G']
+BMajorPentatonic = ['BMajorPentatonic', 'B', 'Db', 'Eb', 'Gb', 'Ab']
+#B Sharp Major Pentatonic scale does not exist
+#C Flat Major Pentatonic scale does not exist
+CMajorPentatonic = ['CMajorPentatonic', 'C', 'D', 'E', 'G', 'A']
+#C Sharp Major Pentatonic scale does not exist
+DbMajorPentatonic = ['DbMajorPentatonic', 'Db', 'Eb', 'F', 'Ab', 'Bb']
+DMajorPentatonic = ['DMajorPentatonic', 'D', 'E', 'Gb', 'A', 'B']
+#D Sharp Major Pentatonic scale does not exist
+EbMajorPentatonic = ['EbMajorPentatonic', 'Eb', 'F', 'G', 'Bb', 'C']
+EMajorPentatonic = ['EMajorPentatonic', 'E', 'Gb', 'Ab', 'B', 'Db']
+#E Sharp Major Pentatonic scale does not exist
+#F Flat Major Pentatonic scale does not exist
+FMajorPentatonic = ['FMajorPentatonic', 'F', 'G', 'A', 'C', 'D']
+#F Sharp Major Pentatonic scale does not exist
+GbMajorPentatonic = ['GbMajorPentatonic', 'Gb', 'Ab', 'Bb', 'Db', 'Eb']
+GMajorPentatonic = ['GMajorPentatonic', 'G', 'A', 'B', 'D', 'E']
+#G Sharp Major Pentatonic scale does not exist
+
+#This is the end of scales lists
+
+MajorScales = [AbMajor, AMajor, BbMajor, BMajor, CbMajor, CMajor, DbMajor, DMajor, EbMajor, EMajor, FMajor, GbMajor, GMajor]  #A list of all major scales for easy indexing
+MajorPentatonic = [AbMajorPentatonic, AMajorPentatonic, BbMajorPentatonic, BMajorPentatonic, CMajorPentatonic, DbMajorPentatonic, DMajorPentatonic, EbMajorPentatonic, EMajorPentatonic, FMajorPentatonic, GbMajorPentatonic, GMajorPentatonic]
+NaturalMinor = [AbNaturalMinor, ANaturalMinor, BbNaturalMinor, BNaturalMinor, CNaturalMinor, DbNaturalMinor, DNaturalMinor, EbNaturalMinor, ENaturalMinor, FNaturalMinor, GbNaturalMinor, GNaturalMinor]
+HarmonicMinor = [AbHarmonicMinor, AHarmonicMinor, BbHarmonicMinor, BHarmonicMinor, CHarmonicMinor, DbHarmonicMinor, DHarmonicMinor, EbHarmonicMinor, EHarmonicMinor, FHarmonicMinor, GbHarmonicMinor, GHarmonicMinor]
+MelodicMinor = [AbMelodicMinor, AMelodicMinor, BbMelodicMinor, BMelodicMinor, CMelodicMinor, DbMelodicMinor, DMelodicMinor, EbMelodicMinor, EMelodicMinor, FMelodicMinor, GbMelodicMinor, GMelodicMinor]
+MegaScaleList = [MajorPentatonic, MajorScales, NaturalMinor, HarmonicMinor, MelodicMinor]
+
+
+result = []                                                  #Makes a new list of results
+
+for typeOfScale in MegaScaleList:                            #Loops to check every scale in all scale lists
+    print("Change Type")
+    for scale in typeOfScale:
+        
+        count = 0
+        for note in scale:
+            
+            if note in chordNumberSet:
+                count += 1
+        if count == len(chordNumberSet):
+            print("")
+            print("Adding:")
+            print(scale)
+            print(count)
+            result.append(scale)
+                                                             #If all the notes in chordNumberList are found in a scale,
+#-------------------------------------------------------#
+                                                             #Put that scale into the result list
+
+                                                             #Print the results list
+
+import random                                                
+
+howManyNotes = [4, 5, 6, 7, 8, 9, 10, 11, 12]                #Randomly select how many note will be in melody
+
+selectedScale = random.choice(result)                        #Choose a major scale to use from all scales that fit the given chord otherwise
+
+if selectedScale in MajorPentatonic:                          #If the scale is a pentatonic scale, use the pentatonic scale settings
+
+    print('PENTATONIC SCALE SETTINGS')
+
+    print(selectedScale[0])                                      #Tell the user what scale is being used
+
+    del selectedScale[0]                                         #Delete the scale name from the scale list so that it isn't chose as a note
+
+    generatedMelody = random.choices(selectedScale, k=random.choice(howManyNotes))              #Generates a melody by selecting a random number of notes (k) from the selected scale, where no note is disproportionally favored
+
+    
+    print(generatedMelody)                                       #Show the melody
+
+else:                                                        #If the scale is not a pentatonic scale, use normal (7 note) scale settings
+
+    print('NORMAL SCALE SETTINGS')
+
+    print(selectedScale[0])                                      #Tell the user what scale is being used
+
+    del selectedScale[0]                                         #Delete the scale name from the scale list so that it isn't chose as a note
+
+    generatedMelody = random.choices(selectedScale, weights=[3, 2, 2, 2, 2, 2, 1], k=random.choice(howManyNotes)) #Generate a melody by selecting a random number of notes (k) from the selected
+                                                                                                                  #scale, where the first note of the scale is disproportionally favored and the
+                                                                                                                  #seventh is disproportionately unfavored
+
+    print(generatedMelody)                                       #Show the melody
+
+   
