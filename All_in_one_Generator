@@ -1,53 +1,6 @@
-# Melody creator test
+# Melody creator - multi chord/rearrangement
 
-chordNumberSet = set()                          #Makes an empty set
-
-print('Please use "s" for sharps and "b" for flats')
-print('Note that the program DOES differentiate between notes like A# and Bb, or B# and C')
-print('How many notes in your chord?')          #Finds out number of notes it needs to analyze
-chordLength = int(input())                      #Turns user input into an integer
-
-i = 0
-while i < chordLength:                          #Makes a loop which asks for the notes in the chord starting at 1 up to the last number of notes in the chord
-    x = i+1                                     #Creates a variable to continually ask for the correct note
-    print('What is note ' + str(x))
-    note = input()
-    if(
-        note not in ['Ab', 'A', 'As', 'Bb', 'B', 'Bs', 'Cb', 'C', 'Cs', 'Db', 'D', 'Ds', 'Eb', 'E', 'Es', 'Fb', 'F', 'Fs', 'Gb', 'G', 'Gs']
-        ):
-        print('Error: The note you entered is not valid')
-        continue                                #If the input for a note is not a note, ask for a new note in that position
-    
-    elif(note in ['As','Cs','Ds','Fs','Gs']):   #If input is a note with a sharp, convert to a flat
-        if note == 'As':
-            note = 'Bb'
-        elif note == 'Cs':
-            note = 'Db'
-        elif note == 'Ds':
-            note = 'Eb'
-        elif note == 'Fs':
-            note = 'Gb'
-        elif note == 'Gs':
-            note = 'Ab'
-            
-        print('Converting Note')
-        chordNumberSet.add(note)                #Puts the note into the set
-        print(chordNumberSet)                   #Shows user the current set
-        i += 1                                  #Add 1 to the loop counter
-        
-    elif(note in ['A','B','C','D','E','F','G']):
-        print('No Conversion Necessary')
-        chordNumberSet.add(note)                #Puts the note into the set
-        print(chordNumberSet)                   #Shows user the current set
-        i += 1                                  #Add 1 to the loop counter
-        
-    else:
-        print('Sharp/flat convert error...')
-        break
-    
-else:
-    print('Please wait...')                     #Asks user to wait when loop ends
-
+import random
     
 # The following are the lists of all major scales
 AbMajor = ['AbMajor', 'Ab', 'Bb', 'C', 'Db', 'Eb', 'F', 'G']
@@ -173,61 +126,91 @@ HarmonicMinor = [AbHarmonicMinor, AHarmonicMinor, BbHarmonicMinor, BHarmonicMino
 MelodicMinor = [AbMelodicMinor, AMelodicMinor, BbMelodicMinor, BMelodicMinor, CMelodicMinor, DbMelodicMinor, DMelodicMinor, EbMelodicMinor, EMelodicMinor, FMelodicMinor, GbMelodicMinor, GMelodicMinor]
 MegaScaleList = [MajorPentatonic, MajorScales, NaturalMinor, HarmonicMinor, MelodicMinor]
 
+print('How many chords in your progression?')                       #Asks for how many chords in progression
+progressionNumber = int(input())                                    #Number of chords is turned into an integer
 
-result = []                                                  #Makes a new list of results
+chordNumberList = [[] for a in range(progressionNumber)]           #A list is created containing a number of empty lists equal to how many chords are in the progression
 
-for typeOfScale in MegaScaleList:                            #Loops to check every scale type in MegaScaleList
+print(chordNumberList)
 
-    for scale in typeOfScale:                                #Loops to check every subscale in each scale type
-        
-        count = 0
-        for note in scale:                                   #Loops to check every note in each subscale
-            
-            if note in chordNumberSet:                       #Counts every time it finds a matching note
-                count += 1
-        if count == len(chordNumberSet):                     #If the number of matching notes found is equal to the number of notes given,...
-            print("")
-            print("Adding:")                                 #...tell the user that the scale is being added and...
-            print(scale[0])
-            print(count)                                     #...how many notes matched
-            result.append(scale)                             #Add that scale to the result list
-                                                             
-#-------------------------------------------------------#
-                                                             
-
-
-import random                                                
-
-howManyNotes = [4, 5, 6, 7, 8, 9, 10, 11, 12]                #Randomly select how many note will be in melody
-
-selectedScale = random.choice(result)                        #Choose a major scale to use from all scales that fit the given chord otherwise
-
-if selectedScale in MajorPentatonic:                         #If the scale is a pentatonic scale, use the pentatonic scale settings
-
-    print('PENTATONIC SCALE SETTINGS')
-
-    print(selectedScale[0])                                  #Tell the user what scale is being used
-
-    del selectedScale[0]                                     #Delete the scale name from the scale list so that it isn't chosen as a note
-
-    generatedMelody = random.choices(selectedScale, k=random.choice(howManyNotes))              #Generates a melody by selecting a random number of notes (k) from the selected scale, where no note
-                                                                                                #is disproportionally favored
-
+chordLength = []
+i = 0
+while i < progressionNumber:
+    x = i+1
+    print('Please use "s" for sharps and "b" for flats')
+    print('Note that the program DOES differentiate between notes like A# and Bb, or B# and C')
+    print('How many notes in chord ' + str(x) + '?')          #Finds out number of notes it needs to analyze
+    chordLength.append(int(input()))                      #Turns user input into an integer
+    k = 0
+    while k < chordLength[x-1]:                          #Makes a loop which asks for the notes in the chord starting at 1 up to the last number of notes in the chord
+        y = k+1                                     #Creates a variable to continually ask for the correct note
+        print('What is note ' + str(y))
+        note = input()
+        if(
+            note not in ['Ab', 'A', 'As', 'Bb', 'B', 'Bs', 'Cb', 'C', 'Cs', 'Db', 'D', 'Ds', 'Eb', 'E', 'Es', 'Fb', 'F', 'Fs', 'Gb', 'G', 'Gs']
+            ):
+            print('Error: The note you entered is not valid')
+            continue                                #If the input for a note is not a note, ask for a new note in that position
     
-    print(generatedMelody)                                   #Show the melody
+        elif(note in ['As','Cs','Ds','Fs','Gs']):   #If input is a note with a sharp, convert to a flat
+            if note == 'As':
+                note = 'Bb'
+            elif note == 'Cs':
+                note = 'Db'
+            elif note == 'Ds':
+                note = 'Eb'
+            elif note == 'Fs':
+                note = 'Gb'
+            elif note == 'Gs':
+                note = 'Ab'
+            
+            print('Converting Note')
+            chordNumberList[x-1].append(note)                #Puts the note into the set
+            print(chordNumberList[x-1])                   #Shows user the current set
+            k += 1                                  #Add 1 to the loop counter
+        
+        elif(note in ['A','B','C','D','E','F','G']):
+            print('No Conversion Necessary')
+            chordNumberList[x-1].append(note)                #Puts the note into the set
+            print(chordNumberList[x-1])                   #Shows user the current set
+            k += 1                                  #Add 1 to the loop counter
+        
+        else:
+            print('Sharp/flat convert error...')
+            break
+        print(chordNumberList)
+    
+    else:
+        print('Please wait...')                     #Asks user to wait when loop ends
+    i += 1
 
-else:                                                        #If the scale is not a pentatonic scale, use normal (7 note) scale settings
+else:
+    print('done')
 
-    print('NORMAL SCALE SETTINGS')
+result = [[] for a in range(progressionNumber)]              #A list is created containing a number of empty lists equal to how many chords are in the progression to hold results
+b = 0
+while b < progressionNumber:
+    
+    for typeOfScale in MegaScaleList:                            #Loops to check every scale type in MegaScaleList
 
-    print(selectedScale[0])                                  #Tell the user what scale is being used
+        for scale in typeOfScale:                                #Loops to check every subscale in each scale type
+        
+            count = 0
+            for note in scale:                                   #Loops to check every note in each subscale
+            
+                if note in chordNumberList[b]:                       #Counts every time it finds a matching note
+                    count += 1
+            if count == len(chordNumberList[b]):                     #If the number of matching notes found is equal to the number of notes given,...
+                print("")
+                print("Adding:")                                 #...tell the user that the scale is being added and...
+                print(scale[0])
+                print(count)                                     #...how many notes matched
+                print('fits chord ' + str(b+1))
+                result[b].append(scale)                             #Add that scale to the result list
+    b += 1
+else:
+    print('finished')
+    print(result)
+ 
 
-    del selectedScale[0]                                     #Delete the scale name from the scale list so that it isn't chose as a note
 
-    generatedMelody = random.choices(selectedScale, weights=[3, 2, 2, 2, 2, 2, 1], k=random.choice(howManyNotes)) #Generate a melody by selecting a random number of notes (k) from the selected
-                                                                                                                  #scale, where the first note of the scale is disproportionally favored and the
-                                                                                                                  #seventh is disproportionately unfavored
-
-    print(generatedMelody)                                   #Show the melody
-
-   
