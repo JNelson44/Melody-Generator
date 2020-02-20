@@ -35,7 +35,7 @@ while i < chordLength:                          #Makes a loop which asks for the
         print(chordNumberSet)                   #Shows user the current set
         i += 1                                  #Add 1 to the loop counter
         
-    elif(note in ['A','B','C','D','E','F','G']):
+    elif(note in ['A','Ab','B','Bb','C','D','Db','E','Eb','F','G','Gb']):
         print('No Conversion Necessary')
         chordNumberSet.add(note)                #Puts the note into the set
         print(chordNumberSet)                   #Shows user the current set
@@ -198,9 +198,9 @@ for typeOfScale in MegaScaleList:                            #Loops to check eve
 
 import random                                                
 
-howManyNotes = [4, 5, 6, 7, 8, 9, 10, 11, 12]                #Randomly select how many note will be in melody
+howManyNotes = [4, 5, 6, 7, 8, 9, 10, 11, 12]                #A list of how many notes can be selected
 
-selectedScale = random.choice(result)                        #Choose a major scale to use from all scales that fit the given chord otherwise
+selectedScale = random.choice(result)                        #Choose a scale to use from all scales that fit the given chord 
 
 if selectedScale in MajorPentatonic:                         #If the scale is a pentatonic scale, use the pentatonic scale settings
 
