@@ -3,7 +3,7 @@
 chordNumberSet = set()                          #Makes an empty set
 
 print('Please use "s" for sharps and "b" for flats')
-print('Note that the program DOES differentiate between notes like A# and Bb, or B# and C')
+print('Note that the program converts all sharps to flats for ease of use - please do not use notes such as B# instead of C as the program cannot identify their correct note yet.')
 print('How many notes in your chord?')          #Finds out number of notes it needs to analyze
 chordLength = int(input())                      #Turns user input into an integer
 
